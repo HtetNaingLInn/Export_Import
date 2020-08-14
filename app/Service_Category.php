@@ -18,6 +18,6 @@ class Service_Category extends Model
 
     public function service()
     {
-        return $this->hasMany(Service::class);
+        return $this->hasMany('App\Service', 'service_category_id', 'id');
     }
 }

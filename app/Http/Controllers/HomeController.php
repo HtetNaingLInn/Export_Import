@@ -2,27 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Service;
+use App\Service_Category;
+use App\Slide;
+use App\Testimonial;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        return view('home');
+
+        $slides = Slide::all();
+        $categories = Service_Category::all();
+        $services = Service::all();
+        $testimonial = Testimonial::all();
+
+        $category = Service_Category::find(1);
+        $service = $category->service;
+        return view('home', compact('slides', 'categories', 'services', 'testimonial', 'service'));
     }
+
 }
